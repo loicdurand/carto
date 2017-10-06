@@ -1,0 +1,91 @@
+/* COLORS
+========================================================================== */
+
+h1{
+	border-bottom: 3px solid;
+	/*border-top: 3px solid;*/
+	margin: 1em 0 2em 0;
+}
+
+h1{
+	color: var(--red-7);
+}
+
+/* ALL SCREENS
+========================================================================== */
+
+main{
+	background: url("../images/rando.jpg") fixed center no-repeat;
+}
+
+h1{
+	text-align: center;
+	text-transform: uppercase;
+}
+
+#submit_reset {
+	margin-right: 16px;
+}
+
+#submit_reset input{
+	float: right;
+}
+
+label span.text{
+	color: var(--red-7);
+}
+
+input[type=submit], input[type=reset]{
+	margin-top: 2em;
+}
+
+input[type=submit]{
+	color: white;
+    background-color: var(--green-9);
+}
+
+input[type=reset]{
+	color: white;
+    background-color: var(--red-9);
+}
+
+div#apercu_label{
+	margin: 2em 0 1em 0;
+}
+div#apercu{
+	min-height: 50px;
+}
+
+div#apercu img{
+	border: 1px dotted var(--blue-8);
+}
+
+/* TABLETS
+========================================================================== */
+@media all and (min-width: 750px){
+	body{
+		margin-top: 15em;
+		background: url("/images/rando.jpg") no-repeat left;
+	}
+
+	main{
+		background: rgba(255,255,255,0.8);
+	}
+} 
+
+/* LAPTOP AND MORE
+========================================================================== */
+@media all and (min-width: 970px){
+	body{
+		margin-top: 2em;
+		background: url("/images/rando.jpg") no-repeat top;
+	}
+}
+
+/* LARGE SCREENS
+========================================================================== */
+@media all and (min-width: 1170px){
+	body{
+		background: url("/images/rando.jpg") no-repeat;
+	}
+}
