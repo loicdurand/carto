@@ -1,0 +1,955 @@
+/*@font-face {
+	font-family: "Roboto Condensed";
+	src: url('/fonts/RobotoCondensed-Light.ttf');
+}*/
+
+@font-face {
+	font-family: "Raleway";
+	src: url('../fonts/Raleway-Regular.ttf');
+}
+
+body {
+	font-family: "Raleway"/*, "Roboto Condensed"*/, Helvetica, Arial, Courier New, sans-serif;
+}
+
+/* Material-icons
+========================================================================== */
+
+/*@font-face {
+	font-family: 'Material Icons';
+	font-style: normal;
+	font-weight: 400;
+	src: local('Material Icons'), local('MaterialIcons-Regular'), url('../fonts/material-icons.woff2') format('woff2');
+}
+
+.material-icons {
+	font-family: 'Material Icons';
+	font-weight: normal;
+	font-style: normal;
+	font-size: 24px;
+	line-height: 1;
+	letter-spacing: normal;
+	text-transform: none;
+	display: inline-block;
+	white-space: nowrap;
+	word-wrap: normal;
+	direction: ltr;
+	-webkit-font-feature-settings: 'liga';
+	-webkit-font-smoothing: antialiased;
+}
+*/
+/* Starter
+========================================================================== */
+
+* {
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	/* repères */
+/*	border: 1px solid black;
+	background: rgba(0,0,0,.2);
+	padding-top: 5px;
+	padding-bottom: 5px;*/
+	/* repères */
+}
+
+h1, h2, h3, h4, h5, h6, p, a{
+	margin-top: 0;
+}
+
+/* images responsives */
+img {
+	vertical-align: middle; /*hack css pour supprimer l'espace sous les images dans un block*/
+}
+
+figure {
+	margin: 0;
+}
+
+/* effets d'ombrage */
+.shadow-1, .btn {
+	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+.shadow-1-half, button:hover, input[type="button"]:hover, .btn:hover {
+	box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+}
+
+.shadow-2 {
+	box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.shadow-3 {
+	box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
+.shadow-4 {
+	box-shadow: 0 16px 28px 0 rgba(0, 0, 0, 0.22), 0 25px 55px 0 rgba(0, 0, 0, 0.21);
+}
+
+.shadow-5 {
+	box-shadow: 0 27px 24px 0 rgba(0, 0, 0, 0.2), 0 40px 77px 0 rgba(0, 0, 0, 0.22);
+}
+
+.hoverable {
+	transition: box-shadow .25s;
+	box-shadow: 0;
+}
+
+.hoverable:hover {
+	transition: box-shadow .25s;
+	box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+/* Tooltip */
+.popup {
+	cursor: help;
+}
+
+.tooltip, .popup {
+	position: relative;
+	display: inline-block;
+}
+
+/* Tooltip text */
+.tooltip .text, .popup .text {
+	visibility: hidden;
+	width: 120px;
+	background-color: rgba(0, 0, 0, 0.8);
+	color: white;
+	text-align: center;
+	padding: 5px 0;
+	border-radius: 6px;
+	/* Position the tooltip text - see examples below! */
+	position: absolute;
+	z-index: 1;
+	/* place les tooltip au dessus */
+	bottom: 100%;
+	left: 50%; 
+	margin-left: -60px
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .text, .popup.active .text {
+	visibility: visible;
+}
+
+/* Tooltip arrow */
+.tooltip .text::after, .popup .text::after {
+	content: "";
+	position: absolute;
+	top: 100%;
+	left: 50%;
+	margin-left: -5px;
+	border-width: 5px;
+	border-style: solid;
+	border-color: var(--grey-10) transparent transparent transparent;
+}
+
+/* Modal */
+
+/* Modal (background) */
+.modal {
+	display: none;
+	position: fixed; 
+	z-index: 1;
+	padding-top: 17%;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgb(0,0,0);
+	background-color: rgba(0,0,0,0.4);
+}
+
+/* Modal Content */
+.modal-content {
+
+	position: relative;
+	background-color: var(--grey-1);
+	margin: auto;
+	padding: 0;
+	border: 1px solid var(--grey-7);
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+	-webkit-animation-name: animatetop;
+	-webkit-animation-duration: 0.4s;
+	animation-name: animatetop;
+	animation-duration: 0.4s;
+	width: 95%;
+}
+
+.modal-from-bottom .modal-content {
+
+	position: fixed;
+	bottom: 0px;
+	width: 100% !important;
+	height: 35%;
+	-webkit-animation-name: animatebottom;
+	animation-name: animatebottom;
+}
+
+/* Modal Animation */
+@-webkit-keyframes animatetop {
+	from {top:-300px; opacity:0}
+	to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+	from {top:-300px; opacity:0}
+	to {top:0; opacity:1}
+}
+
+/* Modal-from-bottom Animation */
+@-webkit-keyframes animatebottom {
+	from {bottom:-300px; opacity:0}
+	to {bottom:0; opacity:1}
+}
+
+@keyframes animatebottom {
+	from {bottom:-300px; opacity:0}
+	to {bottom:0; opacity:1}
+}
+
+/* Close Button */
+.close {
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+	position: relative;
+	top: -16px;
+	right: 16px;
+}
+
+.close:hover,
+.close:focus,
+.open:hover,
+.open:focus {
+	cursor: pointer;
+}
+
+.modal-header, .modal-body, .modal-footer {
+	padding: 1em 0px 0px 1em;
+}
+
+/* boutons */
+/* boutons */
+button, input[type="button"], input[type=submit], input[type=reset], .btn {
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 1em;
+	-webkit-transition-duration: 0.4s;
+	transition-duration: 0.4s;
+	cursor: pointer;
+	background-color: transparent;
+	border: 2px solid;
+	border-radius: 5px;
+	text-transform: uppercase;
+	font-weight: bold;
+	letter-spacing: 0.05em;
+	display: inline-block;
+	height: 36px;
+	line-height: 36px;
+	outline: 0;
+	padding: 0 2rem;
+	text-transform: uppercase;
+	vertical-align: middle;
+	-webkit-tap-highlight-color: transparent;
+	color: var(--grey-8);
+	letter-spacing: .5px;
+	transition: .2s ease-out;
+	margin: 6px 2px;
+}
+
+button:active, input[type="button"]:active, input[type=submit]:active, input[type=reset]:active, .btn:active {
+	background-color: var(--grey-6);
+	color:white;
+}
+
+.green-txt, .btn.green, button.green, input[type=button].green, input[type=submit] {
+	color: var(--confirm-color);
+}
+
+.btn.green:active, button.green:active, input[type=button].green:active, input[type=submit]:active {
+	background-color: var(--confirm-color);
+	color: white;
+}
+
+.red-txt, .btn.red, button.red, input[type=button].red, input[type=reset] {
+	color: var(--deny-color);
+}
+
+.btn.red:active, button.red:active, input[type=button].red:active, input[type=reset]:active {
+	background-color: var(--deny-color);
+	color: white;
+}
+
+/* Mobile-Nav */
+
+/* The mobile-nav (background) */
+.mobile-nav {
+	/* Height & width depends on how you want to reveal the mobile-nav (see JS below) */    
+	height: 100%;
+	width: 0;
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	left: 0;
+	top: 0;
+	background-color: rgb(255,255,255); /* Black fallback color */
+	background-color: rgba(255,255,255, 0.95); /* Black w/opacity */
+	overflow-x: hidden; /* Disable horizontal scroll */
+	transition: 0.5s; /* 0.5 second transition effect to slide in or slide down the mobile-nav (height or width, depending on reveal) */
+	border-right: 1px solid var(--grey-5);
+}
+
+/* Position the content inside the mobile-nav */
+.mobile-nav-content {
+	position: relative;
+	top: 25%; /* 25% from the top */
+	width: 100%; /* 100% width */
+	text-align: center; /* Centered text/links */
+	margin-top: 30px; /* 30px top margin to avoid conflict with the close button on smaller screens */
+}
+
+/* The navigation links inside the mobile-nav */
+.mobile-nav a {
+	padding: 8px;
+	text-decoration: none;
+	font-size: 36px;
+	color: var(--grey-10);
+	display: block; /* Display block instead of inline */
+	transition: 0.3s; /* Transition effects on hover (color) */
+}
+
+/* When you mouse over the navigation links, change their color */
+.mobile-nav a:hover, .mobile-nav a:focus {
+	color: var(--grey-6);
+}
+
+/* Position the close button (top right corner) */
+.mobile-nav a.close {
+	position: absolute;
+	top: 20px;
+	right: 45px;
+	font-size: 60px;
+}
+
+.mobile-nav.active{
+	width: 80%;
+}
+
+.mobile-nav + .open{
+	font-size: 45px;
+	color: var(--grey-10);
+}
+
+.mobile-nav + .open:hover{
+	color: var(--grey-9);
+}
+
+/* When the height of the screen is less than 450 pixels, change the font-size of the links and position the close button again, so they don't overlap */
+@media screen and (max-height: 450px) {
+	.mobile-nav a {font-size: 20px}
+	.mobile-nav .closebtn {
+		font-size: 40px;
+		top: 15px;
+		right: 35px;
+	}
+}
+
+/* Inputs */
+
+input[type=text], input[type=date], input[type=number], textarea, select {
+	width: 100%;
+	padding: 12px 20px;
+	margin: 8px 0 24px 0px;
+	display: inline-block;
+	border: 1px solid var(--grey-5);
+	border-radius: 4px;
+	box-sizing: border-box;
+}
+
+/* Table */
+
+table{
+	border-collapse: collapse;
+	border-spacing: 0;
+	background-color: transparent;
+	width: 100%;
+	text-align: center;
+	border-spacing: 10px;
+	margin: 30px 0 20px 0;
+}
+
+table td {
+	padding: 5px 5px 5px 8px;
+	background: white;
+	border-spacing: 10px;
+	border: 1px dotted var(--grey-5);
+	text-align: center;
+}
+
+table thead td {
+	/*background: var(--red-8);*/
+	color: white;
+	border: 1px solid var(--grey-8);
+}
+
+td, th {
+	padding: 0;
+	line-height: 1.71428571;
+	text-align: left;
+	vertical-align: top;
+}
+
+td, tr td {
+	border-top: 1px solid var(--grey-5);
+}
+
+/* Centered */
+.quick-block{
+	height: 6em;
+	line-height: 7em;
+	white-space: nowrap;
+	text-align: center;
+}
+
+/* site occupe toute la largeur de la page */
+.container-fluid {
+	width: 100%;
+	padding: 15px;
+}
+
+/* site centré dans la page, occupe toute la largeur jusqu'à 1240px */
+.container {
+	max-width: 1240px;
+	margin: auto;
+	padding: 15px;
+}
+
+/* permet de placer les élements .col* côte à côte sans que le conteneur ne prenne une hauteur de 0 */
+.container:before, 
+.container:after,
+.container-fluid:before,
+.container:after,
+.row:before,
+.row:after {
+	display: table;
+	content: "";
+	clear: both;
+}
+
+.row {
+	margin-left: -15px;
+	margin-right: -15px;
+}
+
+.row.quick-block{
+	margin-left: 0px;
+	margin-right: 0px;
+}
+
+.col {
+	/* goutières sur la grille */
+	padding-left: 15px;
+	padding-right: 15px;
+	float: left;
+	/* on donne aux éléments .col une position relative.
+	Ainsi, si on place un élément en absolute dans un .col, 
+	il se positionnera par rapport à cette balise */
+	position: relative;
+}
+
+/* all screens
+========================================================================== */
+body {
+	font-size: 14px;
+}
+
+h1, h2, h3, h4, h5, h6, p, a{
+	margin-top: 0;
+}
+
+.s12 {
+	width: 100%;
+}
+
+.s11 {
+	width: calc((100%/12)*11);
+}
+
+.s10 {
+	width: calc((100%/12)*10);
+}
+
+.s9 {
+	width: calc((100%/12)*9);
+}
+
+.s8 {
+	width: calc((100%/12)*8);
+}
+
+.s7 {
+	width: calc((100%/12)*7);
+}
+
+.s6 {
+	width: calc((100%/12)*6);
+}
+
+.s5 {
+	width: calc((100%/12)*5);
+}
+
+.s4 {
+	width: calc((100%/12)*4);
+}
+
+.s3 {
+	width: calc((100%/12)*3);
+}
+
+.s2 {
+	width: calc((100%/12)*2);
+}
+
+.s1 {
+	width: calc((100%/12)*1);
+}
+
+.offset-s11 {
+	margin-left: calc((100%/12)*11);
+}
+
+.offset-s10 {
+	margin-left: calc((100%/12)*10);
+}
+
+.offset-s9 {
+	margin-left: calc((100%/12)*9);
+}
+
+.offset-s8 {
+	margin-left: calc((100%/12)*8);
+}
+
+.offset-s7 {
+	margin-left: calc((100%/12)*7);
+}
+
+.offset-s6 {
+	margin-left: calc((100%/12)*6);
+}
+
+.offset-s5 {
+	margin-left: calc((100%/12)*5);
+}
+
+.offset-s4 {
+	margin-left: calc((100%/12)*4);
+}
+
+.offset-s3 {
+	margin-left: calc((100%/12)*3);
+}
+
+.offset-s2 {
+	margin-left: calc((100%/12)*2);
+}
+
+.offset-s1 {
+	margin-left: calc((100%/12)*1);
+}
+
+.offset-s0 {
+	margin-left: 0;
+}
+
+.hide{
+	display: none;
+}
+
+input[type=text], input[type=date], input[type=number], textarea, select {
+	color: var(--grey-9);
+	font-weight: bold;
+	font-size: 1.15em;
+}
+
+/* FORMAT TABLETTE
+========================================================================== */
+@media all and (min-width: 640px){
+
+	body {
+		font-size: 15px;
+	}
+
+	.m12 {
+		width: 100%;
+	}
+
+	.m11 {
+		width: calc((100%/12)*11);
+	}
+
+	.m10 {
+		width: calc((100%/12)*10);
+	}
+
+	.m9 {
+		width: calc((100%/12)*9);
+	}
+
+	.m8 {
+		width: calc((100%/12)*8);
+	}
+
+	.m7 {
+		width: calc((100%/12)*7);
+	}
+
+	.m6 {
+		width: calc((100%/12)*6);
+	}
+
+	.m5 {
+		width: calc((100%/12)*5);
+	}
+
+	.m4 {
+		width: calc((100%/12)*4);
+	}
+
+	.m3 {
+		width: calc((100%/12)*3);
+	}
+
+	.m2 {
+		width: calc((100%/12)*2);
+	}
+
+	.m1 {
+		width: calc((100%/12)*1);
+	}
+
+	.offset-m11 {
+		margin-left: calc((100%/12)*11);
+	}
+
+	.offset-m10 {
+		margin-left: calc((100%/12)*10);
+	}
+
+	.offset-m9 {
+		margin-left: calc((100%/12)*9);
+	}
+
+	.offset-m8 {
+		margin-left: calc((100%/12)*8);
+	}
+
+	.offset-m7 {
+		margin-left: calc((100%/12)*7);
+	}
+
+	.offset-m6 {
+		margin-left: calc((100%/12)*6);
+	}
+
+	.offset-m5 {
+		margin-left: calc((100%/12)*5);
+	}
+
+	.offset-m4 {
+		margin-left: calc((100%/12)*4);
+	}
+
+	.offset-m3 {
+		margin-left: calc((100%/12)*3);
+	}
+
+	.offset-m2 {
+		margin-left: calc((100%/12)*2);
+	}
+
+	.offset-m1 {
+		margin-left: calc((100%/12)*1);
+	}
+
+	.offset-m0 {
+		margin-left: 0;
+	}
+
+	.modal-content {
+		width: 85%;
+	}
+
+	/* Centered */
+	.quick-block{
+		height: 10em;
+		line-height: 10em;
+	}
+
+	} /* /TABLETTE */
+
+/* FORMAT LAPTOP
+========================================================================== */
+@media all and (min-width: 992px){
+	
+	body {
+		font-size: 16px;
+	}
+
+	.l12 {
+		width: 100%;
+	}
+
+	.l11 {
+		width: calc((100%/12)*11);
+	}
+
+	.l10 {
+		width: calc((100%/12)*10);
+	}
+
+	.l9 {
+		width: calc((100%/12)*9);
+	}
+
+	.l8 {
+		width: calc((100%/12)*8);
+	}
+
+	.l7 {
+		width: calc((100%/12)*7);
+	}
+
+	.l6 {
+		width: calc((100%/12)*6);
+	}
+
+	.l5 {
+		width: calc((100%/12)*5);
+	}
+
+	.l4 {
+		width: calc((100%/12)*4);
+	}
+
+	.l3 {
+		width: calc((100%/12)*3);
+	}
+
+	.l2 {
+		width: calc((100%/12)*2);
+	}
+
+	.l1 {
+		width: calc((100%/12)*1);
+	}
+
+	.offset-l11 {
+		margin-left: calc((100%/12)*11);
+	}
+
+	.offset-l10 {
+		margin-left: calc((100%/12)*10);
+	}
+
+	.offset-l9 {
+		margin-left: calc((100%/12)*9);
+	}
+
+	.offset-l8 {
+		margin-left: calc((100%/12)*8);
+	}
+
+	.offset-l7 {
+		margin-left: calc((100%/12)*7);
+	}
+
+	.offset-l6 {
+		margin-left: calc((100%/12)*6);
+	}
+
+	.offset-l5 {
+		margin-left: calc((100%/12)*5);
+	}
+
+	.offset-l4 {
+		margin-left: calc((100%/12)*4);
+	}
+
+	.offset-l3 {
+		margin-left: calc((100%/12)*3);
+	}
+
+	.offset-l2 {
+		margin-left: calc((100%/12)*2);
+	}
+
+	.offset-l1 {
+		margin-left: calc((100%/12)*1);
+	}
+
+	.offset-l0 {
+		margin-left: 0;
+	}
+
+	.modal-content {
+		width: 65%;
+	}
+
+	input[type=text], input[type=date], input[type=number], textarea, select {
+		font-weight: initial;
+		font-size: initial;
+	}
+
+	.mobile-nav.active{
+		width: 60%;
+	}
+
+	/* Quick-Block */
+	.quick-block{
+		height: 12em;
+		line-height: 12em;
+	}
+
+	} /* /LAPTOPS */
+
+/* GRAND ECRAN
+========================================================================== */
+@media all and (min-width: 1170px){
+
+	body {
+		font-size: 18px;
+	}
+
+	.xl12 {
+		width: 100%;
+	}
+
+	.xl11 {
+		width: calc((100%/12)*11);
+	}
+
+	.xl10 {
+		width: calc((100%/12)*10);
+	}
+
+	.xl9 {
+		width: calc((100%/12)*9);
+	}
+
+	.xl8 {
+		width: calc((100%/12)*8);
+	}
+
+	.xl7 {
+		width: calc((100%/12)*7);
+	}
+
+	.xl6 {
+		width: calc((100%/12)*6);
+	}
+
+	.xl5 {
+		width: calc((100%/12)*5);
+	}
+
+	.xl4 {
+		width: calc((100%/12)*4);
+	}
+
+	.xl3 {
+		width: calc((100%/12)*3);
+	}
+
+	.xl2 {
+		width: calc((100%/12)*2);
+	}
+
+	.xl1 {
+		width: calc((100%/12)*1);
+	}
+
+	.offset-xl11 {
+		margin-left: calc((100%/12)*11);
+	}
+
+	.offset-xl10 {
+		margin-left: calc((100%/12)*10);
+	}
+
+	.offset-xl9 {
+		margin-left: calc((100%/12)*9);
+	}
+
+	.offset-xl8 {
+		margin-left: calc((100%/12)*8);
+	}
+
+	.offset-xl7 {
+		margin-left: calc((100%/12)*7);
+	}
+
+	.offset-xl6 {
+		margin-left: calc((100%/12)*6);
+	}
+
+	.offset-xl5 {
+		margin-left: calc((100%/12)*5);
+	}
+
+	.offset-xl4 {
+		margin-left: calc((100%/12)*4);
+	}
+
+	.offset-xl3 {
+		margin-left: calc((100%/12)*3);
+	}
+
+	.offset-xl2 {
+		margin-left: calc((100%/12)*2);
+	}
+
+	.offset-xl1 {
+		margin-left: calc((100%/12)*1);
+	}
+
+	.offset-xl0 {
+		margin-left: 0;
+	}
+
+	.modal-content {
+		width: 45%;
+	}
+
+	.mobile-nav.active{
+		width: 35%;
+	}
+
+	.hide-xl {
+		display: none !important;
+	}
+
+	} /* /GRANDS ECRAN */
+	/* Hide */
+	@media only screen and (max-width: 639px) {
+		.hide-s {
+			display: none !important;
+		}
+	}
+
+	@media only screen and (min-width: 640px) and (max-width: 991px) {
+		.hide-m {
+			display: none !important;
+		}
+	}
+
+	@media only screen and (min-width: 992px) and (max-width: 1169px) {
+		.hide-l {
+			display: none !important;
+		}
+	}
